@@ -1,0 +1,77 @@
+-----------
+CK Vote 1.0
+-----------
+
+A web-based program in PHP with MySQL to allow schools to run elections. (Based 
+on the old CKHS voting system.) Students go to the web page, log in with their
+student number, choose from the candidates and vote for any or all of them.
+Faculty enter the candidates and positions from a friendly web interface and
+view the results live. They have the option to view each student's vote, and to
+view the complete history of everything that happens (though this is an ugly text
+log.)
+
+I. Database
+
+All the students in the school (those who will be voting). Students are only allowed
+to vote once, and cannot change their vote. svoted is set to 1 when they have voted.
+CREATE TABLE students (
+		sid int not null auto_increment,
+		sfirst varchar(16),
+		slast varchar(16),
+		snumber char(10),
+		sgrade int(2),
+		svoted int(1),
+		primary key(sid)
+);
+
+The administrators. These are created by a systems admin through the database. For
+simplicity, they cannot change their username or password, though they can be changed
+through the database. There are no permission levels, so any admin can edit or
+delete anything another admin has created.
+CREATE TABLE admins (
+		aid int not null auto_increment,
+		auser varchar(16),
+		apass varchar(16),
+		primary key(aid)
+);
+
+The positions to be voted on. These are created by an admin through the web
+interface. Grade is the grade of student that is allowed to vote on this, or 99
+for all students. This could be done differently, but for CK elections this is all
+that is necessary. Alternatively, this could be done with a sum system: 10 is sophomores, 
+21 (10+11) is sophomores and juniors, etc. Let's keep it simple for now.
+CREATE TABLE positions (
+		pid int not null auto_increment,
+		pname varchar(16),
+		pgrade int(2),
+		primary key(pid)
+);
+
+The candidates for the positions. These are entered in by an admin through the
+web interface. If a candidate is running for more than one position, he needs to
+be entered in twice.
+CREATE TABLE candidates (
+		cid int not null auto_increment,
+		pid int not null,
+		cfirst varchar(16),
+		clast varchar(16),
+		primary key(cid)
+);
+
+All the votes from all the students for all the candidates.
+CREATE TABLE votes (
+		vid int not null auto_increment,
+		sid int not null,
+		pid int not null,
+		cid int not null,
+		primary key(vid)
+);
+
+II. Administrators' interface
+Admins log in to their interface from the web page. They can view the current results,
+as well as create and delete positions/candidates. They can also view the contents
+of the votes table if they wish.
+
+III. Students' interface
+Students log in with their student number from the web page. They place their votes,
+and are done.
