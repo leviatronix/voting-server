@@ -14,21 +14,24 @@ if (!validateUser()) redirect("login.php","You need to log in.");
 
 // get data
 $query = "SELECT pid, pname, pgrade FROM positions";
-$result = mysql_query($query, $conn);
+$result = $mysqli->query($query);
 
 $positions = array();
 $candidates = array();
 $votes = array();
-for ($i=0, $num=mysql_num_rows($result); $i<$num; $i++) {
-		$positions[$i] = mysql_fetch_array($result);
+for ($i=0, $num=$result->num_rows; $i<$num; $i++) {
+		$positions[$i] = $result->fetch_array();
 		$query = "SELECT cid, cname FROM candidates WHERE pid=".$positions[$i]["pid"];
-		$result2 = mysql_query($query, $conn);
-		for ($j=0, $num2=mysql_num_rows($result2); $j<$num2; $j++) {
-				$candidates[$i][$j] = mysql_fetch_array($result2);
+		$result2 = $mysqli->query($query);
+		for ($j=0, $num2=$result2->num_rows; $j<$num2; $j++) {
+				$candidates[$i][$j] = $result2->fetch_array();
 				$query = "SELECT count(vid) FROM votes WHERE cid=".$candidates[$i][$j]["cid"];
-				$votes[$i][$j] = mysql_result(mysql_query($query, $conn), 0, 0);
+				$votes[$i][$j] = $mysqli->query($query)->fetch_array()[0];
 		}
+		$result2->close();
 }
+
+$result->close();
 
 $smarty->assign("positions",$positions);
 $smarty->assign("candidates",$candidates);

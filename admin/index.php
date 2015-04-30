@@ -10,6 +10,7 @@
 
 require_once 'common.php';
 
+
 if (!validateUser()) redirect("login.php","You need to log in.");
 
 $smarty->display('./index.tpl');

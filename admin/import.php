@@ -30,9 +30,14 @@ if ($_POST["action"] == "import") {
 				$words[$j] = trim($words[$j]);
 			 }
 			 $query = "INSERT INTO students VALUES ('','".$words[$lastname_index]."','".$words[$firstname_index]."','".$words[$number_index]."','".$words[$grade_index]."',0)";
-	 		 mysql_query($query, $conn);
-			 if (!mysql_error()) $count++;
-			 else { print mysql_error(); print $query; print " <br>"; }
+	 		 $mysqli->query($query);
+			 if (!$mysqli->error) 
+			 	$count++;
+			 else { 
+			 	print $mysqli->error();
+			 	print $query;
+			 	print " <br>";
+			 }
 	 }
 	 
 	 $smarty->assign("count",$count);
