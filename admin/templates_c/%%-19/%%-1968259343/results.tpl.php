@@ -7,10 +7,10 @@ unset($_smarty_tpl_vars);
  ?>
 
 <table>
-n000000000000000000000000000b
+
 <tr>
 		<td>
-		<b>Current Results testest</b>
+		<b>Current Results</b>
 		</td>
 </tr>
 <?php if (isset($this->_sections['position'])) unset($this->_sections['position']);

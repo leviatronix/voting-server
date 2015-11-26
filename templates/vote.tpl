@@ -13,7 +13,7 @@ Welcome, <b>{$name}</b>. You may vote for any or all of the candidates listed be
 		{section name=candidate loop=$candidates}
 		{if $candidates[position][candidate].0 > 0}
 		<tr>
-				<td><input type="checkbox" name="{$candidates[position][candidate].0}"></td>
+				<td><input type="radio" name="{$candidates[position][candidate].0}"></td>
 				<td><label for="{$candidates[position][candidate].0}">{$candidates[position][candidate].1}</label></td>
 		</tr>
 		{/if}

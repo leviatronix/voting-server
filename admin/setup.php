@@ -14,7 +14,7 @@ require_once './common.php';
 
 if ($_POST["action"]) {
 	if ($_POST["action"] == "addposition") {
-		$query = "INSERT INTO positions VALUES ('','".$_POST["name"]."',".$_POST["grade"].")";
+		$query = "INSERT INTO positions VALUES (0,'".$_POST["name"]."',".$_POST["grade"].")";
 		$mysqli->query($query);
 		$pid = $mysqli->insert_id;
 		
@@ -34,7 +34,7 @@ if ($_POST["action"]) {
 		$mysqli->query($query);
 		
 		for ($i=0, $num=count($candidates); $i<$num; $i++) {
-				$query = "INSERT INTO candidates VALUES ('',".$pid.",'".$candidates[$i]."')";
+				$query = "INSERT INTO candidates VALUES (0,".$pid.",'".$candidates[$i]."')";
 				$mysqli->query($query);
 		}
 		 

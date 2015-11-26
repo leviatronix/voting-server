@@ -40,5 +40,3 @@ $smarty->assign("votes",$votes);
 $smarty->display('./results.tpl');
 
 ?>
-
-?>

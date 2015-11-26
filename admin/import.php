@@ -29,7 +29,7 @@ if ($_POST["action"] == "import") {
 			 for ($j=0, $num2=count($words); $j<$num2; $j++) {
 				$words[$j] = trim($words[$j]);
 			 }
-			 $query = "INSERT INTO students VALUES ('','".$words[$lastname_index]."','".$words[$firstname_index]."','".$words[$number_index]."','".$words[$grade_index]."',0)";
+			 $query = "INSERT INTO students VALUES (0,'".$words[$lastname_index]."','".$words[$firstname_index]."','".$words[$number_index]."','".$words[$grade_index]."',0)";
 	 		 $mysqli->query($query);
 			 if (!$mysqli->error) 
 			 	$count++;

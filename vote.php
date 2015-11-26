@@ -15,7 +15,7 @@ if ($_POST["action"] == "vote") {
 	// post votes
 	foreach ($_POST as $key => $val) {
 		if (is_numeric($key) && $val != "") {
-			$query = "INSERT INTO votes VALUES ('',$sid,$key)";
+			$query = "INSERT INTO votes VALUES (0,$sid,$key)";
 			$mysqli->query($query);
 		}
 	}
