@@ -44,7 +44,7 @@ $this->_sections['position']['last']       = ($this->_sections['position']['iter
 </tr>
 		<?php if (isset($this->_sections['candidate'])) unset($this->_sections['candidate']);
 $this->_sections['candidate']['name'] = 'candidate';
-$this->_sections['candidate']['loop'] = is_array($this->_tpl_vars['candidates']) ? count($this->_tpl_vars['candidates']) : max(0, (int)$this->_tpl_vars['candidates']);
+$this->_sections['candidate']['loop'] = is_array($this->_tpl_vars['candidates'][$this->_sections['position']['index']]) ? count($this->_tpl_vars['candidates'][$this->_sections['position']['index']]) : max(0, (int)$this->_tpl_vars['candidates'][$this->_sections['position']['index']]);
 $this->_sections['candidate']['show'] = true;
 $this->_sections['candidate']['max'] = $this->_sections['candidate']['loop'];
 $this->_sections['candidate']['step'] = 1;
