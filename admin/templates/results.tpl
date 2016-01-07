@@ -25,7 +25,7 @@
 				<td valign=top>: </td>
 				<td valign=top>
 				<table>
-				{section name=candidate loop=$candidates}
+				{section name=candidate loop=$candidates[position]}
 				{if $candidates[position][candidate].0 > 0}
 				<tr>
 						<td>{$candidates[position][candidate].1}: {$votes[position][candidate].0} votes</td>

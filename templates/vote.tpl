@@ -10,7 +10,7 @@ Welcome, <b>{$name}</b>. You may vote for any or all of the candidates listed be
 <tr>
 		<td colspan=2 align=left><b>{$positions[position].1}</b></td>
 </tr>
-		{section name=candidate loop=$candidates}
+		{section name=candidate loop=$candidates[position]}
 		{if $candidates[position][candidate].0 > 0}
 		<tr>
 				<td><input type="radio" name="{$candidates[position][candidate].0}"></td>
